@@ -6,8 +6,7 @@ const Comments = () => {
             <TypeAnimation
                 sequence={[
                     `This is custom comments`,
-                    1000,
-                    "",
+                    1000, // 1 second pause
                 ]}
                 speed={50}
                 style={{ whiteSpace: 'pre-line', fontSize: '2em' }}
