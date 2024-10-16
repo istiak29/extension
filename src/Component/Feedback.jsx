@@ -15,23 +15,25 @@ const Feedback = () => {
         setFeedback((prevState) => ({ ...prevState, [category]: value }));
     };
 
-    // Handle form submission
+    // Handle form submission (for now, just show a success message)
     const handleSubmit = () => {
-        setSubmitted(true); // Set the submitted state to true
+        setSubmitted(true); // Show success message after submission
     };
 
     return (
-        <div className="flex flex-col items-center mt-5">
+        <div className="max-w-2xl mx-auto p-5 bg-white shadow-lg rounded-lg mt-10">
+            <h2 className="text-2xl font-bold text-center mb-6">Feedback Form</h2>
+
             {/* Feedback categories */}
-            <div className="flex justify-evenly w-full mb-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Product Quality Selector */}
                 <div className="category">
-                    <h3 className="font-bold mb-2">Product Quality</h3>
+                    <h3 className="text-lg font-semibold mb-3 text-center">Product Quality</h3>
                     <div className="flex flex-col gap-2">
                         {['Excellent', 'Good', 'Average', 'Poor', 'Very Poor'].map((option) => (
                             <button
                                 key={option}
-                                className={`btn ${feedback.productQuality === option ? 'btn-primary' : 'btn-outline'
+                                className={`btn w-full ${feedback.productQuality === option ? 'btn-primary' : 'btn-outline'
                                     }`}
                                 onClick={() => handleSelect('productQuality', option)}
                             >
@@ -43,12 +45,12 @@ const Feedback = () => {
 
                 {/* Payment Selector */}
                 <div className="category">
-                    <h3 className="font-bold mb-2">Payment</h3>
+                    <h3 className="text-lg font-semibold mb-3 text-center">Payment</h3>
                     <div className="flex flex-col gap-2">
                         {['Excellent', 'Good', 'Average', 'Poor', 'Very Poor'].map((option) => (
                             <button
                                 key={option}
-                                className={`btn ${feedback.payment === option ? 'btn-primary' : 'btn-outline'
+                                className={`btn w-full ${feedback.payment === option ? 'btn-primary' : 'btn-outline'
                                     }`}
                                 onClick={() => handleSelect('payment', option)}
                             >
@@ -60,12 +62,12 @@ const Feedback = () => {
 
                 {/* Service Selector */}
                 <div className="category">
-                    <h3 className="font-bold mb-2">Service</h3>
+                    <h3 className="text-lg font-semibold mb-3 text-center">Service</h3>
                     <div className="flex flex-col gap-2">
                         {['Excellent', 'Good', 'Average', 'Poor', 'Very Poor'].map((option) => (
                             <button
                                 key={option}
-                                className={`btn ${feedback.service === option ? 'btn-primary' : 'btn-outline'
+                                className={`btn w-full ${feedback.service === option ? 'btn-primary' : 'btn-outline'
                                     }`}
                                 onClick={() => handleSelect('service', option)}
                             >
@@ -77,14 +79,16 @@ const Feedback = () => {
             </div>
 
             {/* Submit Button */}
-            <button className="btn btn-success" onClick={handleSubmit}>
-                Submit
-            </button>
+            <div className="flex justify-center mt-6">
+                <button className="btn btn-success w-full md:w-1/2" onClick={handleSubmit}>
+                    Submit Feedback
+                </button>
+            </div>
 
-            {/* Display selected feedback after submission */}
+            {/* Display submission status */}
             {submitted && (
-                <div className="mt-5">
-                    <h3 className="font-bold mb-2">Submitted Feedback:</h3>
+                <div className="mt-6 text-center">
+                    <h3 className="text-xl font-bold text-green-600">Thank you for your feedback!</h3>
                     <p>Product Quality: {feedback.productQuality}</p>
                     <p>Payment: {feedback.payment}</p>
                     <p>Service: {feedback.service}</p>
